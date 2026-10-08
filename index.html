@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f172a">
+<meta name="description" content="Treino Fit — musculação, cargas, repetições, histórico e cronômetro.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<title>Treino Fit</title>
+<style>
+:root{--bg:#f1f5f9;--card:#fff;--text:#0f172a;--muted:#64748b;--primary:#0f172a;--accent:#2563eb;--line:#e2e8f0;--ok:#16a34a;--danger:#dc2626}
+*{box-sizing:border-box}html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}body{padding-bottom:96px}button,input{font:inherit}button{cursor:pointer;border:0}.app{max-width:760px;margin:auto}.top{background:var(--primary);color:#fff;padding:18px 16px calc(14px + env(safe-area-inset-top));position:sticky;top:0;z-index:20}.toprow{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-size:22px;font-weight:800}.sub{font-size:12px;opacity:.72;margin-top:2px}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}.tabs button{padding:11px;border-radius:12px;background:#1e293b;color:#cbd5e1;font-weight:800}.tabs button.active{background:#fff;color:#0f172a}.install{display:none;margin-top:10px;width:100%;padding:11px;border-radius:12px;background:#2563eb;color:#fff;font-weight:800}.content{padding:14px}.summary{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}.stat{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:12px}.stat b{display:block;font-size:19px}.stat span{font-size:12px;color:var(--muted)}.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:14px;margin:10px 0;box-shadow:0 2px 8px rgba(15,23,42,.04)}.exercise{position:relative}.exercise.done{opacity:.68}.exercise.done .title{text-decoration:line-through}.head{display:flex;align-items:flex-start;gap:10px}.num{width:32px;height:32px;border-radius:10px;background:#e2e8f0;display:grid;place-items:center;font-weight:800;flex:0 0 auto}.title{font-size:17px;font-weight:800;margin:0}.meta{color:var(--muted);font-size:13px;margin-top:3px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px}.field input{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:11px;background:#fff;color:var(--text)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.btn{padding:10px 12px;border-radius:11px;background:#0f172a;color:#fff;font-weight:750}.btn.secondary{background:#e2e8f0;color:#0f172a}.btn.blue{background:#2563eb}.btn.green{background:#16a34a}.btn.danger{background:#dc2626}.checkline{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;color:var(--muted)}.checkline input{width:20px;height:20px}.timer{position:fixed;left:50%;transform:translateX(-50%);bottom:12px;bottom:calc(12px + env(safe-area-inset-bottom));width:min(720px,calc(100% - 24px));background:#0f172a;color:#fff;border-radius:18px;padding:11px 12px;display:flex;align-items:center;gap:9px;box-shadow:0 10px 30px rgba(0,0,0,.28);z-index:30}.timerMain{margin-right:auto}.timer small{display:block;color:#94a3b8;font-size:11px}.time{font-size:28px;font-weight:900;font-variant-numeric:tabular-nums;line-height:1}.timer .btn{background:#fff;color:#0f172a;padding:9px 10px}.sectionTitle{font-size:18px;font-weight:850;margin:18px 0 8px}.note{font-size:13px;color:var(--muted);line-height:1.45}.empty{padding:25px 10px;text-align:center;color:var(--muted)}.historyItem{display:flex;justify-content:space-between;gap:10px;align-items:center}.historyItem b{font-size:15px}.historyItem small{color:var(--muted)}.modal{display:none;position:fixed;inset:0;background:rgba(15,23,42,.62);z-index:50;padding:18px;overflow:auto}.modal.open{display:block}.modalCard{max-width:680px;margin:7vh auto;background:#fff;border-radius:18px;padding:16px}.modalHead{display:flex;justify-content:space-between;align-items:center}.modalHead h2{margin:0;font-size:19px}.close{background:#e2e8f0;border-radius:10px;padding:8px 10px}.table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}.table th,.table td{padding:8px;border-bottom:1px solid var(--line);text-align:left}.footerActions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 30px}.toast{position:fixed;left:50%;transform:translateX(-50%);top:80px;background:#0f172a;color:#fff;padding:10px 14px;border-radius:12px;display:none;z-index:80;font-size:13px}.toast.show{display:block}
+@media(min-width:600px){.content{padding:18px}.summary{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+  <div class="toprow"><div><div class="brand">Treino Fit</div><div class="sub">31 anos • 95 kg • 1,83 m • intermediário</div></div><button id="installBtn" class="install" style="width:auto;margin:0">Instalar</button></div>
+  <div class="tabs"><button id="tabA" class="active">Treino A</button><button id="tabB">Treino B</button></div>
+</header>
+<main class="content">
+  <section class="summary" id="summary"></section>
+  <div id="list"></div>
+  <section class="card">
+    <div class="note"><b>Progressão:</b> use aproximadamente 1–2 repetições na reserva nos exercícios principais. Quando atingir o topo da faixa de repetições com boa técnica, aumente a carga gradualmente.</div>
+  </section>
+  <div class="sectionTitle">Histórico</div>
+  <div id="history"></div>
+  <div class="footerActions">
+    <button class="btn green" id="finishBtn">Finalizar treino</button>
+    <button class="btn secondary" id="exportBtn">Exportar dados</button>
+    <button class="btn danger" id="clearBtn">Apagar dados</button>
+  </div>
+</main>
+</div>
+<div class="timer"><div class="timerMain"><small>DESCANSO</small><div id="time" class="time">01:30</div></div><button class="btn" id="startBtn">Iniciar</button><button class="btn" id="pauseBtn">Pausar</button><button class="btn" id="resetBtn">Reset</button></div>
+<div id="historyModal" class="modal"><div class="modalCard"><div class="modalHead"><h2 id="modalTitle">Treino</h2><button class="close" id="closeModal">Fechar</button></div><div id="modalBody"></div></div></div>
+<div id="toast" class="toast"></div>
+<script>
+const workouts={A:[['Agachamento livre ou Smith',4,'6–10'],['Supino reto',4,'6–10'],['Remada baixa',3,'8–12'],['Leg press 45°',3,'10–12'],['Puxada frontal',3,'8–12'],['Elevação lateral',3,'12–15'],['Tríceps na polia',2,'10–15'],['Abdominal na máquina',3,'12–20']],B:[['Stiff',4,'6–10'],['Supino inclinado com halteres',3,'8–12'],['Puxada alta',3,'8–12'],['Cadeira extensora',3,'10–15'],['Mesa flexora',3,'10–15'],['Desenvolvimento com halteres',3,'8–12'],['Rosca direta',2,'10–15'],['Prancha',3,'30–60 s']]};
+let current='A',seconds=90,interval=null,db=null,deferredPrompt=null;
+const DB='TreinoFitDB', STORE='kv', HIST='history';
+function openDB(){return new Promise((resolve,reject)=>{const r=indexedDB.open(DB,1);r.onupgradeneeded=()=>{const d=r.result;if(!d.objectStoreNames.contains(STORE))d.createObjectStore(STORE);if(!d.objectStoreNames.contains(HIST))d.createObjectStore(HIST,{keyPath:'id',autoIncrement:true});};r.onsuccess=()=>{db=r.result;resolve(db)};r.onerror=()=>reject(r.error)})}
+function kvGet(key){return new Promise((res,rej)=>{const r=db.transaction(STORE,'readonly').objectStore(STORE).get(key);r.onsuccess=()=>res(r.result??'');r.onerror=()=>rej(r.error)})}
+function kvSet(key,value){return new Promise((res,rej)=>{const r=db.transaction(STORE,'readwrite').objectStore(STORE).put(value,key);r.onsuccess=()=>res();r.onerror=()=>rej(r.error)})}
+function kvClear(){return new Promise((res,rej)=>{const r=db.transaction(STORE,'readwrite').objectStore(STORE).clear();r.onsuccess=()=>res();r.onerror=()=>rej(r.error)})}
+function histories(){return new Promise((res,rej)=>{const out=[];const r=db.transaction(HIST,'readonly').objectStore(HIST).openCursor(null,'prev');r.onsuccess=e=>{const c=e.target.result;if(c){out.push(c.value);c.continue()}else res(out)};r.onerror=()=>rej(r.error)})}
+function addHistory(x){return new Promise((res,rej)=>{const r=db.transaction(HIST,'readwrite').objectStore(HIST).add(x);r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
+function clearHistory(){return new Promise((res,rej)=>{const r=db.transaction(HIST,'readwrite').objectStore(HIST).clear();r.onsuccess=()=>res();r.onerror=()=>rej(r.error)})}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
+function key(w,i,f){return `tf-${w}-${i}-${f}`}
+async function showWorkout(w){current=w;tabA.classList.toggle('active',w==='A');tabB.classList.toggle('active',w==='B');await render()}
+async function render(){const list=document.getElementById('list');list.innerHTML='';let doneCount=0,total=0;for(let i=0;i<workouts[current].length;i++){const e=workouts[current][i], weight=await kvGet(key(current,i,'weight')), reps=await kvGet(key(current,i,'reps')), done=(await kvGet(key(current,i,'done')))===1;if(done)doneCount++;total++;const c=document.createElement('div');c.className='card exercise '+(done?'done':'');c.innerHTML=`<div class="head"><div class="num">${i+1}</div><div style="flex:1"><p class="title">${e[0]}</p><div class="meta">${e[1]} séries × ${e[2]}</div></div></div><div class="fields"><div class="field"><label>Peso (kg)</label><input inputmode="decimal" data-i="${i}" data-f="weight" value="${escapeHtml(weight)}" placeholder="Ex.: 80"></div><div class="field"><label>Reps feitas</label><input inputmode="numeric" data-i="${i}" data-f="reps" value="${escapeHtml(reps)}" placeholder="Ex.: 10"></div></div><div class="actions"><button class="btn blue video" data-i="${i}">▶ Ver execução</button><button class="btn secondary rest">⏱ Descansar</button></div><label class="checkline"><input type="checkbox" data-i="${i}" class="donebox" ${done?'checked':''}> Série/exercício concluído</label>`;list.appendChild(c)}
+list.querySelectorAll('input[data-f]').forEach(inp=>inp.addEventListener('change',async()=>{let v=inp.value.trim();if(inp.dataset.f==='weight')v=v.replace(',','.');await kvSet(key(current,Number(inp.dataset.i),inp.dataset.f),v);await render();}));
+list.querySelectorAll('.donebox').forEach(ch=>ch.addEventListener('change',async()=>{await kvSet(key(current,Number(ch.dataset.i),'done'),ch.checked?1:0);await render();}));
+list.querySelectorAll('.video').forEach(b=>b.addEventListener('click',()=>{const q=workouts[current][Number(b.dataset.i)][0]+' execução correta musculação';window.open('https://www.youtube.com/results?search_query='+encodeURIComponent(q),'_blank');}));
+list.querySelectorAll('.rest').forEach(b=>b.addEventListener('click',()=>{resetTimer();startTimer();toast('Descanso de 90 s iniciado');}));
+document.getElementById('summary').innerHTML=`<div class="stat"><b>${current}</b><span>Treino atual</span></div><div class="stat"><b>${doneCount}/${total}</b><span>Exercícios concluídos</span></div><div class="stat"><b>90 s</b><span>Descanso padrão</span></div><div class="stat"><b>3×/sem</b><span>Frequência</span></div>`;
+await renderHistory();}
+function escapeHtml(v){return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+async function renderHistory(){const h=document.getElementById('history'), items=await histories();if(!items.length){h.innerHTML='<div class="card empty">Nenhum treino salvo ainda. Complete um treino para criar o primeiro registro.</div>';return;}h.innerHTML=items.slice(0,8).map(x=>`<div class="card historyItem"><div><b>${x.workout} • ${new Date(x.date).toLocaleDateString('pt-BR')}</b><br><small>${new Date(x.date).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})} • ${x.duration||'—'}</small></div><button class="btn secondary" data-history="${x.id}">Ver</button></div>`).join('');h.querySelectorAll('[data-history]').forEach(b=>b.addEventListener('click',()=>openHistory(Number(b.dataset.history))));}
+async function openHistory(id){const items=await histories(),x=items.find(v=>v.id===id);if(!x)return;document.getElementById('modalTitle').textContent=`Treino ${x.workout} • ${new Date(x.date).toLocaleDateString('pt-BR')}`;document.getElementById('modalBody').innerHTML='<table class="table"><thead><tr><th>Exercício</th><th>Peso</th><th>Reps</th></tr></thead><tbody>'+x.exercises.map(e=>`<tr><td>${escapeHtml(e.name)}</td><td>${escapeHtml(e.weight||'—')}</td><td>${escapeHtml(e.reps||'—')}</td></tr>`).join('')+'</tbody></table>';historyModal.classList.add('open')}
+function fmt(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function updateTimer(){time.textContent=fmt(seconds)}
+function startTimer(){if(interval)return;interval=setInterval(()=>{seconds--;updateTimer();if(seconds<=0){clearInterval(interval);interval=null;navigator.vibrate?.([300,150,300]);toast('Descanso finalizado!');}},1000)}
+function pauseTimer(){clearInterval(interval);interval=null}
+function resetTimer(){pauseTimer();seconds=90;updateTimer()}
+async function finishWorkout(){const ex=[];for(let i=0;i<workouts[current].length;i++){ex.push({name:workouts[current][i][0],weight:await kvGet(key(current,i,'weight')),reps:await kvGet(key(current,i,'reps'))})}await addHistory({workout:current,date:new Date().toISOString(),exercises:ex,duration:'Registrado manualmente'});toast('Treino salvo no histórico');await renderHistory()}
+function installPWA(){if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null;installBtn.style.display='none'});}}
+async function exportData(){const payload={exportedAt:new Date().toISOString(),profile:{age:31,weightKg:95,heightM:1.83,level:'intermediário'},history:await histories()};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='treino-fit-dados.json';a.click();URL.revokeObjectURL(a.href)}
+async function clearData(){if(!confirm('Apagar todas as cargas, repetições e histórico?'))return;await kvClear();await clearHistory();await render();toast('Dados apagados')}
+tabA.onclick=()=>showWorkout('A');tabB.onclick=()=>showWorkout('B');startBtn.onclick=startTimer;pauseBtn.onclick=pauseTimer;resetBtn.onclick=resetTimer;closeModal.onclick=()=>historyModal.classList.remove('open');historyModal.onclick=e=>{if(e.target===historyModal)historyModal.classList.remove('open')};exportBtn.onclick=exportData;clearBtn.onclick=clearData;finishBtn.onclick=finishWorkout;
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')render()});
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;installBtn.style.display='block'});installBtn.onclick=installPWA;
+if('serviceWorker' in navigator && (location.protocol==='https:'||location.hostname==='localhost'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+(async()=>{try{await openDB();updateTimer();await render();}catch(e){console.error(e);toast('Não foi possível abrir o armazenamento local.');}})();
+</script>
+</body>
+</html>
